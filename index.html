@@ -16,13 +16,11 @@
     a { color: inherit; text-decoration: none; }
     header { border-bottom: 1px solid var(--rule); }
     .wrap { max-width: 72rem; margin: 0 auto; padding: 1.5rem 1.25rem; }
-    .eyebrow { font-family: Outfit, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--seal); margin: 0; }
-    h1 { font-size: clamp(1.875rem, 3vw, 2.25rem); font-weight: 400; line-height: 1.15; margin: 0.25rem 0; }
-    .subtitle { font-family: Outfit, sans-serif; font-size: 0.875rem; color: var(--muted); margin: 0; }
+    h1 { font-size: clamp(1.875rem, 3vw, 2.25rem); font-weight: 400; line-height: 1.15; margin: 0; }
+    .subtitle { font-family: Outfit, sans-serif; font-size: 0.875rem; color: var(--muted); margin: 0.25rem 0 0; }
     .layout { max-width: 72rem; margin: 0 auto; display: grid; }
     nav { max-height: 20rem; overflow-y: auto; border-bottom: 1px solid var(--rule); background: var(--paper-deep); }
-    .nav-label { font-family: Outfit, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); padding: 1rem 1.25rem 0; margin: 0; }
-    ol.nav, ol.points, ol.sources { list-style: none; margin: 0; padding: 0.75rem 1rem 1rem; }
+    ol.nav, ol.points, ol.sources { list-style: none; margin: 0; padding: 1rem 1rem 1rem; }
     ol.nav li.branch, ol.nav li.frame { margin-left: 1rem; padding-left: 0.75rem; }
     ol.nav li.branch { border-left: 1px solid var(--rule); }
     ol.nav li.frame { border-left: 1px solid var(--seal); }
@@ -39,8 +37,9 @@
     h3.frame-title { font-family: Newsreader, Palatino, serif; font-size: 1.5rem; letter-spacing: 0; text-transform: none; color: var(--ink); font-weight: 400; margin-top: 0.5rem; }
     h4 { color: var(--muted); margin-top: 1.5rem; }
     .body { margin-top: 2rem; max-width: 40rem; }
+    article[id="cover"] .body { max-width: none; margin-top: 0; }
     .prose { font-size: 1.125rem; line-height: 1.7; margin: 0 0 1.5rem; }
-    .stack .prose:last-child, .open { margin-bottom: 0; }
+    .open { margin-bottom: 0; }
     .party, .when { font-family: Outfit, sans-serif; font-size: 0.875rem; color: var(--muted); margin: 0; }
     figure { margin: 1.5rem 0 0; border-left: 1px solid var(--seal); padding-left: 1rem; }
     blockquote { margin: 0; font-size: 1.25rem; line-height: 1.4; font-style: italic; }
@@ -48,7 +47,16 @@
     ol.points, ol.sources { padding: 0; margin-top: 1rem; }
     ol.points li, ol.sources li { border-top: 1px solid var(--rule); padding: 1rem 0; }
     .label, .who { font-family: Outfit, sans-serif; font-size: 0.875rem; font-weight: 500; margin: 0; }
-    .cover { display: block; width: min(100%, 28rem); margin: 1rem auto 0; }
+    .cover-block { max-width: 28rem; margin: 0 auto; text-align: center; }
+    .cover { display: block; width: 100%; margin: 0 auto; }
+    .cover-kicker { margin-top: 2rem; }
+    .cover-title { font-size: clamp(2.25rem, 4vw, 3rem); line-height: 1.1; margin: 0.75rem 0 0; }
+    .cover-sub { font-size: 1.125rem; font-style: italic; color: var(--muted); margin: 0.75rem 0 0; }
+    .cover-author { font-size: 1.125rem; color: var(--muted); margin: 1rem 0 0; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+    .stats dt { font-size: 1.875rem; line-height: 1.1; }
+    .stats dd { margin: 0.25rem 0 0; font-family: Outfit, sans-serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    a.begin { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: 1.5rem; padding: 0 1.25rem; border-radius: 0.375rem; background: var(--seal); color: var(--paper); font-family: Outfit, sans-serif; font-size: 0.875rem; }
     footer { margin-top: 3rem; max-width: 40rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; border-top: 1px solid var(--rule); padding-top: 1.5rem; }
     footer a { min-height: 2.75rem; border-radius: 0.375rem; padding: 0.5rem; font-family: Outfit, sans-serif; font-size: 0.875rem; }
     footer a:hover { background: var(--seal-soft); }
@@ -61,6 +69,7 @@
     @media (min-width: 768px) {
       .layout { grid-template-columns: 18rem minmax(0, 1fr); }
       nav { position: sticky; top: 0; height: 100vh; max-height: none; border-right: 1px solid var(--rule); border-bottom: 0; background: var(--paper); }
+      ol.nav { padding: 2rem 1.25rem; }
       .wrap { padding: 1.5rem 2rem; }
       main { padding: 3rem 2.5rem; }
     }
@@ -68,16 +77,26 @@
 </head>
 <body>
   <header><div class="wrap">
-    <p class="eyebrow">A reading copy</p>
     <h1>The Government They Found</h1>
     <p class="subtitle">The American Presidency from Washington to Trump</p>
   </div></header>
   <div class="layout">
     <nav>
-      <p class="nav-label">Branches</p>
       <ol class="nav"><li class="trunk"><a href="#cover" data-slug="cover"><span class="nav-title">Cover</span></a></li><li class="trunk"><a href="#introduction" data-slug="introduction"><span class="nav-title">Introduction</span></a></li><li class="trunk"><a href="#before-the-presidency" data-slug="before-the-presidency"><span class="nav-kicker">Before 1789</span><span class="nav-title">The Government They Left</span></a></li><li class="branch"><a href="#washington" data-slug="washington"><span class="nav-kicker">1789–1797</span><span class="nav-title">George Washington</span></a></li><li class="frame"><a href="#bill-of-rights" data-slug="bill-of-rights"><span class="nav-kicker">1791–1795</span><span class="nav-title">The Bill of Rights and the Eleventh Amendment</span></a></li><li class="branch"><a href="#adams" data-slug="adams"><span class="nav-kicker">1797–1801</span><span class="nav-title">John Adams</span></a></li><li class="branch"><a href="#virginia-four" data-slug="virginia-four"><span class="nav-kicker">1789–1825</span><span class="nav-title">The Virginia Four</span></a></li><li class="branch"><a href="#jefferson" data-slug="jefferson"><span class="nav-kicker">1801–1809</span><span class="nav-title">Thomas Jefferson</span></a></li><li class="frame"><a href="#marbury" data-slug="marbury"><span class="nav-kicker">1803–1804</span><span class="nav-title">Marbury and the Twelfth Amendment</span></a></li><li class="branch"><a href="#madison" data-slug="madison"><span class="nav-kicker">1809–1817</span><span class="nav-title">James Madison</span></a></li><li class="branch"><a href="#monroe" data-slug="monroe"><span class="nav-kicker">1817–1825</span><span class="nav-title">James Monroe</span></a></li><li class="frame"><a href="#mcculloch" data-slug="mcculloch"><span class="nav-kicker">1819–1824</span><span class="nav-title">McCulloch and Gibbons</span></a></li><li class="branch"><a href="#jq-adams" data-slug="jq-adams"><span class="nav-kicker">1825–1829</span><span class="nav-title">John Quincy Adams</span></a></li><li class="branch"><a href="#jackson" data-slug="jackson"><span class="nav-kicker">1829–1837</span><span class="nav-title">Andrew Jackson</span></a></li><li class="frame"><a href="#worcester" data-slug="worcester"><span class="nav-kicker">1832</span><span class="nav-title">Worcester v. Georgia</span></a></li><li class="branch"><a href="#van-buren" data-slug="van-buren"><span class="nav-kicker">1837–1841</span><span class="nav-title">Martin Van Buren</span></a></li><li class="branch"><a href="#wh-harrison" data-slug="wh-harrison"><span class="nav-kicker">1841</span><span class="nav-title">William Henry Harrison</span></a></li><li class="branch"><a href="#tyler" data-slug="tyler"><span class="nav-kicker">1841–1845</span><span class="nav-title">John Tyler</span></a></li><li class="branch"><a href="#polk" data-slug="polk"><span class="nav-kicker">1845–1849</span><span class="nav-title">James K. Polk</span></a></li><li class="branch"><a href="#taylor" data-slug="taylor"><span class="nav-kicker">1849–1850</span><span class="nav-title">Zachary Taylor</span></a></li><li class="branch"><a href="#fillmore" data-slug="fillmore"><span class="nav-kicker">1850–1853</span><span class="nav-title">Millard Fillmore</span></a></li><li class="branch"><a href="#pierce" data-slug="pierce"><span class="nav-kicker">1853–1857</span><span class="nav-title">Franklin Pierce</span></a></li><li class="branch"><a href="#buchanan" data-slug="buchanan"><span class="nav-kicker">1857–1861</span><span class="nav-title">James Buchanan</span></a></li><li class="frame"><a href="#dred-scott" data-slug="dred-scott"><span class="nav-kicker">1857</span><span class="nav-title">Dred Scott v. Sandford</span></a></li><li class="branch"><a href="#lincoln" data-slug="lincoln"><span class="nav-kicker">1861–1865</span><span class="nav-title">Abraham Lincoln</span></a></li><li class="frame"><a href="#thirteenth" data-slug="thirteenth"><span class="nav-kicker">1865</span><span class="nav-title">The Thirteenth Amendment</span></a></li><li class="branch"><a href="#a-johnson" data-slug="a-johnson"><span class="nav-kicker">1865–1869</span><span class="nav-title">Andrew Johnson</span></a></li><li class="frame"><a href="#fourteenth" data-slug="fourteenth"><span class="nav-kicker">1866–1868</span><span class="nav-title">Milligan and the Fourteenth Amendment</span></a></li><li class="branch"><a href="#grant" data-slug="grant"><span class="nav-kicker">1869–1877</span><span class="nav-title">Ulysses S. Grant</span></a></li><li class="frame"><a href="#fifteenth" data-slug="fifteenth"><span class="nav-kicker">1870–1873</span><span class="nav-title">The Fifteenth Amendment and the Slaughterhouse Cases</span></a></li><li class="branch"><a href="#hayes" data-slug="hayes"><span class="nav-kicker">1877–1881</span><span class="nav-title">Rutherford B. Hayes</span></a></li><li class="branch"><a href="#garfield" data-slug="garfield"><span class="nav-kicker">1881</span><span class="nav-title">James A. Garfield</span></a></li><li class="branch"><a href="#arthur" data-slug="arthur"><span class="nav-kicker">1881–1885</span><span class="nav-title">Chester A. Arthur</span></a></li><li class="frame"><a href="#civil-rights-cases" data-slug="civil-rights-cases"><span class="nav-kicker">1883</span><span class="nav-title">The Civil Rights Cases</span></a></li><li class="branch"><a href="#cleveland-1885" data-slug="cleveland-1885"><span class="nav-kicker">1885–1889</span><span class="nav-title">Grover Cleveland</span></a></li><li class="branch"><a href="#b-harrison" data-slug="b-harrison"><span class="nav-kicker">1889–1893</span><span class="nav-title">Benjamin Harrison</span></a></li><li class="branch"><a href="#cleveland-1893" data-slug="cleveland-1893"><span class="nav-kicker">1893–1897</span><span class="nav-title">Grover Cleveland</span></a></li><li class="frame"><a href="#pollock-plessy" data-slug="pollock-plessy"><span class="nav-kicker">1895–1896</span><span class="nav-title">Pollock and Plessy</span></a></li><li class="branch"><a href="#mckinley" data-slug="mckinley"><span class="nav-kicker">1897–1901</span><span class="nav-title">William McKinley</span></a></li><li class="branch"><a href="#t-roosevelt" data-slug="t-roosevelt"><span class="nav-kicker">1901–1909</span><span class="nav-title">Theodore Roosevelt</span></a></li><li class="frame"><a href="#lochner" data-slug="lochner"><span class="nav-kicker">1905</span><span class="nav-title">Lochner v. New York</span></a></li><li class="branch"><a href="#taft" data-slug="taft"><span class="nav-kicker">1909–1913</span><span class="nav-title">William Howard Taft</span></a></li><li class="frame"><a href="#sixteenth-seventeenth" data-slug="sixteenth-seventeenth"><span class="nav-kicker">1913</span><span class="nav-title">The Sixteenth and Seventeenth Amendments</span></a></li><li class="branch"><a href="#wilson" data-slug="wilson"><span class="nav-kicker">1913–1921</span><span class="nav-title">Woodrow Wilson</span></a></li><li class="frame"><a href="#war-amendments" data-slug="war-amendments"><span class="nav-kicker">1919–1920</span><span class="nav-title">Speech, Prohibition, and the Vote</span></a></li><li class="branch"><a href="#harding" data-slug="harding"><span class="nav-kicker">1921–1923</span><span class="nav-title">Warren G. Harding</span></a></li><li class="branch"><a href="#coolidge" data-slug="coolidge"><span class="nav-kicker">1923–1929</span><span class="nav-title">Calvin Coolidge</span></a></li><li class="branch"><a href="#hoover" data-slug="hoover"><span class="nav-kicker">1929–1933</span><span class="nav-title">Herbert Hoover</span></a></li><li class="frame"><a href="#twentieth-twentyfirst" data-slug="twentieth-twentyfirst"><span class="nav-kicker">1933</span><span class="nav-title">The Twentieth and Twenty-first Amendments</span></a></li><li class="branch"><a href="#fdr" data-slug="fdr"><span class="nav-kicker">1933–1945</span><span class="nav-title">Franklin D. Roosevelt</span></a></li><li class="frame"><a href="#new-deal-court" data-slug="new-deal-court"><span class="nav-kicker">1935–1944</span><span class="nav-title">The Court, the New Deal, and Korematsu</span></a></li><li class="branch"><a href="#truman" data-slug="truman"><span class="nav-kicker">1945–1953</span><span class="nav-title">Harry S. Truman</span></a></li><li class="frame"><a href="#youngstown" data-slug="youngstown"><span class="nav-kicker">1951–1952</span><span class="nav-title">Term Limits and the Steel Seizure</span></a></li><li class="branch"><a href="#eisenhower" data-slug="eisenhower"><span class="nav-kicker">1953–1961</span><span class="nav-title">Dwight D. Eisenhower</span></a></li><li class="frame"><a href="#brown" data-slug="brown"><span class="nav-kicker">1954–1961</span><span class="nav-title">Brown and the Twenty-third Amendment</span></a></li><li class="branch"><a href="#kennedy" data-slug="kennedy"><span class="nav-kicker">1961–1963</span><span class="nav-title">John F. Kennedy</span></a></li><li class="frame"><a href="#warren-kennedy" data-slug="warren-kennedy"><span class="nav-kicker">1962–1963</span><span class="nav-title">Baker v. Carr and Gideon</span></a></li><li class="branch"><a href="#lbj" data-slug="lbj"><span class="nav-kicker">1963–1969</span><span class="nav-title">Lyndon B. Johnson</span></a></li><li class="frame"><a href="#warren-johnson" data-slug="warren-johnson"><span class="nav-kicker">1964–1967</span><span class="nav-title">One Person, One Vote, and Two Amendments</span></a></li><li class="branch"><a href="#nixon" data-slug="nixon"><span class="nav-kicker">1969–1974</span><span class="nav-title">Richard Nixon</span></a></li><li class="frame"><a href="#nixon-court" data-slug="nixon-court"><span class="nav-kicker">1971–1974</span><span class="nav-title">The Vote at Eighteen, Roe, and the Tapes</span></a></li><li class="branch"><a href="#ford" data-slug="ford"><span class="nav-kicker">1974–1977</span><span class="nav-title">Gerald Ford</span></a></li><li class="branch"><a href="#carter" data-slug="carter"><span class="nav-kicker">1977–1981</span><span class="nav-title">Jimmy Carter</span></a></li><li class="branch"><a href="#reagan" data-slug="reagan"><span class="nav-kicker">1981–1989</span><span class="nav-title">Ronald Reagan</span></a></li><li class="frame"><a href="#chevron" data-slug="chevron"><span class="nav-kicker">1984–1988</span><span class="nav-title">Chevron and the Independent Counsel</span></a></li><li class="branch"><a href="#ghw-bush" data-slug="ghw-bush"><span class="nav-kicker">1989–1993</span><span class="nav-title">George H. W. Bush</span></a></li><li class="frame"><a href="#casey-twentyseventh" data-slug="casey-twentyseventh"><span class="nav-kicker">1992</span><span class="nav-title">Casey and the Twenty-seventh Amendment</span></a></li><li class="branch"><a href="#clinton" data-slug="clinton"><span class="nav-kicker">1993–2001</span><span class="nav-title">Bill Clinton</span></a></li><li class="frame"><a href="#bush-v-gore" data-slug="bush-v-gore"><span class="nav-kicker">2000</span><span class="nav-title">Bush v. Gore</span></a></li><li class="branch"><a href="#gw-bush" data-slug="gw-bush"><span class="nav-kicker">2001–2009</span><span class="nav-title">George W. Bush</span></a></li><li class="frame"><a href="#heller" data-slug="heller"><span class="nav-kicker">2008</span><span class="nav-title">District of Columbia v. Heller</span></a></li><li class="branch"><a href="#obama" data-slug="obama"><span class="nav-kicker">2009–2017</span><span class="nav-title">Barack Obama</span></a></li><li class="frame"><a href="#obama-court" data-slug="obama-court"><span class="nav-kicker">2010–2015</span><span class="nav-title">The Court and the Statutes of a Generation</span></a></li><li class="branch"><a href="#trump" data-slug="trump"><span class="nav-kicker">2017–2021</span><span class="nav-title">Donald Trump</span></a></li><li class="frame"><a href="#trump-v-hawaii" data-slug="trump-v-hawaii"><span class="nav-kicker">2018</span><span class="nav-title">Trump v. Hawaii</span></a></li><li class="branch"><a href="#biden" data-slug="biden"><span class="nav-kicker">2021–2025</span><span class="nav-title">Joseph Biden</span></a></li><li class="frame"><a href="#biden-court" data-slug="biden-court"><span class="nav-kicker">2022–2024</span><span class="nav-title">The Court He Did Not Appoint</span></a></li><li class="trunk"><a href="#the-party-that-kept-the-name" data-slug="the-party-that-kept-the-name"><span class="nav-kicker">Afterward</span><span class="nav-title">The Party That Kept the Name</span></a></li><li class="trunk"><a href="#the-democratic-socialist-party" data-slug="the-democratic-socialist-party"><span class="nav-kicker">Afterward II</span><span class="nav-title">The Democratic Socialist Party of America</span></a></li><li class="trunk"><a href="#sources" data-slug="sources"><span class="nav-kicker">Works cited</span><span class="nav-title">Sources</span></a></li></ol>
     </nav>
-    <main><article id="cover" hidden><h2>Cover</h2><div class="body"><img class="cover" src="the-government-they-found-cover.jpg" alt="The Government They Found"></div><footer>
+    <main><article id="cover" hidden><div class="body"><div class="cover-block">
+      <img class="cover" src="the-government-they-found-cover.jpg" alt="The Government They Found">
+      <p class="kicker cover-kicker">A reading copy</p>
+      <p class="cover-title">The Government They Found</p>
+      <p class="cover-sub">The American Presidency from Washington to Trump</p>
+      <p class="cover-author">Joshua Paladino</p>
+      <dl class="stats">
+        <div><dt>79</dt><dd>Chapters</dd></div>
+        <div><dt>129,518</dt><dd>Words</dd></div>
+        <div><dt>9 hr 23 min</dt><dd>To read</dd></div>
+      </dl>
+      <a class="begin" href="#introduction">Begin reading</a>
+    </div></div><footer>
       <span></span>
       <a class="next" href="#introduction"><span>Next</span>Introduction</a>
     </footer></article>
@@ -551,10 +570,15 @@
       });
       if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
       window.scrollTo(0, 0);
-      const active = links.find((link) => link.dataset.slug === id);
-      active?.scrollIntoView({ block: "nearest" });
+      links.find((link) => link.dataset.slug === id)?.scrollIntoView({ block: "nearest" });
     }
     window.addEventListener("hashchange", () => show(location.hash.slice(1)));
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a[href^='#']");
+      if (!link) return;
+      event.preventDefault();
+      show(link.getAttribute("href").slice(1));
+    });
     show(location.hash.slice(1) || "cover");
   </script>
 </body>
